@@ -216,7 +216,7 @@ module.exports = {
       "always"
     ],
     "semi-spacing": 2,
-    "sort-imports": 2,
+    "sort-imports": [2, { "ignoreCase": true }],
     "sort-vars": 2,
     "space-before-blocks": 2,
     "space-before-function-paren": 0,

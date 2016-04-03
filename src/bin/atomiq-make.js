@@ -1,12 +1,18 @@
+// init babel and stack trace support
+import 'babel-polyfill';
+import 'source-map-support/register';
+
 import cli from 'commander';
 import debug from 'debug';
+import Make from '../lib/tasks/Make';
 
 let map = new Map([
   [ 'clean', { description: 'Removes project build artifacts (dist directory)', action: clean }],
+  [ 'dist', { description: 'Ensures all files are copied to dist', action: dist }],
   [ 'babel', { description: 'Transpiles src to dist directory', action: babel }],
-  [ 'dist', { description: 'Ensures all non-js files are also copied to dist', action: dist }],
   [ 'image', { description: 'Build the Docker image for the project', action: image }],
-  [ 'build', { description: 'Run all tasks required for building the project', action: build }]
+  [ 'build', { description: 'Run all tasks required for building the project', action: build }],
+  [ 'rebuild', { description: 'Run all tasks required for completely rebuilding the project', action: rebuild }]
 ]);
 
 for (let [key, value] of map) {
@@ -19,48 +25,59 @@ for (let [key, value] of map) {
 
 cli.parse(process.argv);
 
-/**
- * Removes the dist directory.
- */
-function clean() {
-  const log = debug('make:clean');
-  log('Deleting dist...');
+function runtask(task, ...rest) {
+  const log = debug(`make:${task}`);
+  log(`running task ${task}`);
+  const make = new Make();
+  make.init();
+  make[task](...rest);
 }
 
 /**
- * Transpile all the ES6 files in src and place
- * ES5 files and sourcemaps in the dist directory.
+ * Removes the dist directory.
  */
-function babel() {
-  clean();
-  const log = debug('make:babel');
-  log('Transpiling src to dist...');
+function clean(options) {
+  runtask('clean');
 }
 
 /**
  * Copies all files over to the dist directory
  * (not just the transpiled sources).
  */
-function dist() {
-  babel();
-  const log = debug('make:dist');
-  log('Copying all non-js files to dist...');
+function dist(options) {
+  clean();
+  runtask('dist');
+}
+
+/**
+ * Transpile all the ES6 files in src and place
+ * ES5 files and sourcemaps in the dist directory.
+ */
+function babel(options) {
+  dist();
+  runtask('babel');
 }
 
 /**
  * Build the Docker image for the project.
  */
-function image() {
-  dist();
-  const log = debug('make:image');
-  log('Building the Docker image...');
+function image(options) {
+  babel();
+  runtask('image');
 }
 
 /**
  * Ensures all build tasks are performed for building the project.
  */
-function build() {
+function build(options) {
   image();
-  const log = debug('make:build');
-  log('Running all tasks required for building the project...');
+  runtask('build');
+}
+
+/**
+ * Ensures all build tasks are performed for completely rebuilding the project.
+ */
+function rebuild(options) {
+  image();
+  runtask('rebuild');
 }

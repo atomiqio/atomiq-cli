@@ -36,6 +36,6 @@
     "node-inspector": "^0.12.7"
   },
   "atomiq": {
-    "supportedVersion": "^1.0.6"
+    "supportedVersion": "1.0.6"
   }
 }
