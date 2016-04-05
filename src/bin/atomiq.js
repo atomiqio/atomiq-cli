@@ -9,6 +9,7 @@ import 'source-map-support/register';
 import App from '../lib/commands/App';
 import chalk from 'chalk';
 import cli from 'commander';
+import prompt from 'prompt';
 import debug from 'debug';
 import path from 'path';
 import pkg from '../../package.json';
@@ -48,18 +49,29 @@ function create(options) {
     name: 'app'
   };
 
-  try {
-    App.create(source, dest, context);
-    console.log('[%s] Try running the app (use `up` to run in a container). Enter:\n%s\n%s\n%s or %s',
-      chalk.bold('OK'),
-      chalk.bold('   cd ' + context.name),
-      chalk.bold('   npm install'),
-      chalk.bold('   atomiq run'),
-      chalk.bold('atomiq up'));
-  } catch (err) {
-    console.log('[%s] %s', chalk.red('error'), err.message);
-    process.exit(1);
-  }
+  prompt.message = chalk.blue('atomiq');
+  prompt.delimiter = chalk.cyan(':');
+
+  prompt.start();
+  prompt.get(['appname'], (err, result) => {
+    if (err) {
+      console.log('[%s] %s', chalk.red('error'), err.message);
+      process.exit(1);
+    }
+    context.name = result.appname;
+    try {
+      App.create(source, dest, context);
+      console.log('[%s] Try running the app (use `up` to run in a container). Enter:\n%s\n%s\n%s or %s',
+        chalk.bold('OK'),
+        chalk.bold('   cd ' + context.name),
+        chalk.bold('   npm install'),
+        chalk.bold('   atomiq run'),
+        chalk.bold('atomiq up'));
+    } catch (err) {
+      console.log('[%s] %s', chalk.red('error'), err.message);
+      process.exit(1);
+    }
+  });
 }
 
 function runContainer(options) {
