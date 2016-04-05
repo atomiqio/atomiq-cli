@@ -50,7 +50,6 @@ function create(options) {
     name: 'app'
   };
 
-<<<<<<< ffde897b2bdceef631f5f2e29f145db0195cc964
   prompt.message = chalk.blue('atomiq');
   prompt.delimiter = chalk.cyan(':');
 
@@ -62,32 +61,17 @@ function create(options) {
     }
     context.name = result.appname;
     try {
-      App.create(source, dest, context);
-      console.log('[%s] Try running the app (use `up` to run in a container). Enter:\n%s\n%s\n%s or %s',
-        chalk.bold('OK'),
-        chalk.bold('   cd ' + context.name),
-        chalk.bold('   npm install'),
-        chalk.bold('   atomiq run'),
-        chalk.bold('atomiq up'));
-    } catch (err) {
-      console.log('[%s] %s', chalk.red('error'), err.message);
-      process.exit(1);
-    }
-  });
-=======
-  try {
     App.create(source, dest, context);
     console.log('[%s] Try running the app (use `up` to run in a container). Enter:\n%s\n%s\n%s or %s',
       chalk.green.bold('OK'),
       chalk.bold('   cd ' + context.name),
       chalk.bold('   atomiq build'),
-      chalk.bold('   atomiq up'),
-      chalk.bold('atomiq up'));
-  } catch (err) {
-    console.log('[%s] %s', chalk.red('error'), err.message);
-    process.exit(1);
-  }
->>>>>>> wires up run/test/debug/url commands
+      chalk.bold('   atomiq up'));
+    } catch (err) {
+      console.log('[%s] %s', chalk.red('error'), err.message);
+      process.exit(1);
+    }
+  });
 }
 
 function runContainer(options) {
