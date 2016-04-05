@@ -21,9 +21,10 @@ cli
 
 let map = new Map([
   [ 'new', { description: 'Create a new atomiq app', action: create }],
-  [ 'run', { description: 'Create a new atomiq app', action: runContainer }],
-  [ 'test', { description: 'Create a new atomiq app', action: testContainer }],
-  [ 'debug', { description: 'Create a new atomiq app', action: debugContainer }]
+  [ 'up', { description: 'Run app in a container', action: runContainer }],
+  [ 'test', { description: 'Run app tests in a container', action: testContainer }],
+  [ 'debug', { description: 'Debug app running in a container', action: debugContainer }],
+  [ 'url', { description: 'Get URL (IP:PORT) for running app', action: url}]
 ]);
 
 for (let [key, value] of map) {
@@ -60,13 +61,12 @@ function create(options) {
     }
     context.name = result.appname;
     try {
-      App.create(source, dest, context);
-      console.log('[%s] Try running the app (use `up` to run in a container). Enter:\n%s\n%s\n%s or %s',
-        chalk.bold('OK'),
-        chalk.bold('   cd ' + context.name),
-        chalk.bold('   npm install'),
-        chalk.bold('   atomiq run'),
-        chalk.bold('atomiq up'));
+    App.create(source, dest, context);
+    console.log('[%s] Try running the app (use `up` to run in a container). Enter:\n%s\n%s\n%s or %s',
+      chalk.green.bold('OK'),
+      chalk.bold('   cd ' + context.name),
+      chalk.bold('   atomiq make build'),
+      chalk.bold('   atomiq up'));
     } catch (err) {
       console.log('[%s] %s', chalk.red('error'), err.message);
       process.exit(1);
@@ -101,6 +101,17 @@ function debugContainer(options) {
   log('Debug app running in a container');
   try {
     App.debug(options);
+  } catch (err) {
+    console.log('[%s] %s', chalk.red('error'), err.message);
+    process.exit(1);
+  }
+}
+
+function url(options) {
+  const log = debug('atomiq:app:url');
+  log('Getting URL for running app');
+  try {
+    App.url(options);
   } catch (err) {
     console.log('[%s] %s', chalk.red('error'), err.message);
     process.exit(1);

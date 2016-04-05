@@ -6,7 +6,7 @@ import shell from 'shelljs';
 export default class ShellHelper {
 
   static exec(...args) {
-    execSync(...args);
+    return execSync(...args);
   }
 
   static spawn(...args) {
