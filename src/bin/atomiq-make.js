@@ -14,7 +14,9 @@ let map = new Map([
   [ 'dist', { description: 'Ensures all files are copied to dist', action: dist }],
   [ 'babel', { description: 'Transpiles src to dist directory', action: babel }],
   [ 'build', { description: 'Build the Docker image for the project', action: build }],
-  [ 'rebuild', { description: 'Force rebuild fresh Docker image for the project', action: rebuild }]
+  [ 'rebuild', { description: 'Force rebuild fresh Docker image for the project', action: rebuild }],
+//  [ 'watch-src', { description: 'Watch src directory and update dist', action: watchsrc }],
+  [ 'watch-dist', { description: 'Watch dist directory and restart server', action: watchdist }],
 ]);
 
 for (let [key, value] of map) {
@@ -79,4 +81,19 @@ function build(options) {
 function rebuild(options) {
   babel();
   runtask('rebuild');
+}
+
+/**
+ * Watch the src directory and update dist.
+ */
+function watchsrc(options) {
+  dist();
+  runtask('watchsrc');
+}
+
+/**
+ * Watch the dist directory and restart server.
+ */
+function watchdist(options) {
+  runtask('watchdist');
 }

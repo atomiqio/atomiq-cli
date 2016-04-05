@@ -4,6 +4,11 @@ import path from 'path';
 import Project from '../Project';
 import Shell from '../ShellHelper';
 
+// include node_modules/.bin in path, just like 'npm run' scripts
+process.env.PATH = path.join(path.join(__dirname, '..', '..', '..', './node_modules', '.bin') +
+  path.delimiter +
+  process.env.PATH);
+
 const spawnopts = {
   env: process.env,
   stdio: 'inherit'
@@ -36,5 +41,17 @@ export default class Make {
 
   rebuild() {
     Compose.rebuild(spawnopts);
+  }
+
+  watchsrc() {
+    console.log('spawning babel');
+    Shell.spawn('babel', ['--watch', 'src', '-d', 'dist', '--source-maps'], spawnopts);
+  }
+
+  watchdist() {
+    console.log('While monitoring, you can also enter "rs" in the console to manually restart');
+    Shell.spawn('nodemon',
+      ['--legacy-watch', '--watch', 'dist', '-e', 'js,json', '--exec', 'docker-compose up --force-recreate'],
+      spawnopts);
   }
 }
