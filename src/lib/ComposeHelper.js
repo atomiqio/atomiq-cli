@@ -14,10 +14,6 @@ export default class ComposeHelper {
     Shell.spawn('docker-compose', ['up', '--force-recreate'], options);
   }
 
-  static production(options) {
-    Shell.spawn('docker-compose', ['-f', 'docker-compose.production.yml', 'up', '--force-recreate'], options);
-  }
-
   static test(options) {
     Shell.spawn('docker-compose', ['-f', 'docker-compose.test.yml', 'up', '--force-recreate'], options);
   }
@@ -26,4 +22,8 @@ export default class ComposeHelper {
     Shell.spawn('docker-compose', ['-f', 'docker-compose.debug.yml', 'up', '--force-recreate'], options);
   }
 
+  static production(options) {
+    Shell.spawn('docker-compose', ['-f', 'docker-compose.production.yml', 'up', '--force-recreate'], options);
+  }
+  
 }

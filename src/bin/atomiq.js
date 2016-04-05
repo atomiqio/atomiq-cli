@@ -13,6 +13,7 @@ import prompt from 'prompt';
 import debug from 'debug';
 import path from 'path';
 import pkg from '../../package.json';
+import { babel } from './atomiq-make';
 
 cli
   .version(pkg.version)
@@ -21,9 +22,10 @@ cli
 
 let map = new Map([
   [ 'new', { description: 'Create a new atomiq app', action: create }],
-  [ 'run', { description: 'Create a new atomiq app', action: runContainer }],
-  [ 'test', { description: 'Create a new atomiq app', action: testContainer }],
-  [ 'debug', { description: 'Create a new atomiq app', action: debugContainer }]
+  [ 'up', { description: 'Run app in a container', action: runContainer }],
+  [ 'test', { description: 'Run app tests in a container', action: testContainer }],
+  [ 'debug', { description: 'Debug app running in a container', action: debugContainer }],
+  [ 'url', { description: 'Get URL (IP:PORT) for running app', action: url}]
 ]);
 
 for (let [key, value] of map) {
@@ -49,6 +51,7 @@ function create(options) {
     name: 'app'
   };
 
+<<<<<<< ffde897b2bdceef631f5f2e29f145db0195cc964
   prompt.message = chalk.blue('atomiq');
   prompt.delimiter = chalk.cyan(':');
 
@@ -72,12 +75,26 @@ function create(options) {
       process.exit(1);
     }
   });
+=======
+  try {
+    App.create(source, dest, context);
+    console.log('[%s] Try running the app (use `up` to run in a container). Enter:\n%s\n%s\n%s or %s',
+      chalk.green.bold('OK'),
+      chalk.bold('   cd ' + context.name),
+      chalk.bold('   atomiq up'),
+      chalk.bold('atomiq up'));
+  } catch (err) {
+    console.log('[%s] %s', chalk.red('error'), err.message);
+    process.exit(1);
+  }
+>>>>>>> wires up run/test/debug/url commands
 }
 
 function runContainer(options) {
   const log = debug('atomiq:new');
   log('Run app in a container');
   try {
+    babel();
     App.up(options);
   } catch (err) {
     console.log('[%s] %s', chalk.red('error'), err.message);
@@ -89,6 +106,7 @@ function testContainer(options) {
   const log = debug('atomiq:app:test');
   log('Run tests in a container');
   try {
+    babel();
     App.test(options);
   } catch (err) {
     console.log('[%s] %s', chalk.red('error'), err.message);
@@ -100,7 +118,19 @@ function debugContainer(options) {
   const log = debug('atomiq:app:debug');
   log('Debug app running in a container');
   try {
+    babel();
     App.debug(options);
+  } catch (err) {
+    console.log('[%s] %s', chalk.red('error'), err.message);
+    process.exit(1);
+  }
+}
+
+function url(options) {
+  const log = debug('atomiq:app:url');
+  log('Getting URL for running app');
+  try {
+    App.url(options);
   } catch (err) {
     console.log('[%s] %s', chalk.red('error'), err.message);
     process.exit(1);

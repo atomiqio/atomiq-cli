@@ -60,7 +60,7 @@ function dist(options) {
  * Transpile all the ES6 files in src and place
  * ES5 files and sourcemaps in the dist directory.
  */
-function babel(options) {
+export function babel(options) {
   dist();
   runtask('babel');
 }

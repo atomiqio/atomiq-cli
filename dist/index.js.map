@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/index.js"],"names":[],"mappings":";;AAAA;;;;AACA;;;;AACA;;;;;;AAEA,IAAM,MAAM,qBAAM,KAAN,CAAN","file":"index.js","sourcesContent":["import debug from 'debug';\nimport path from 'path';\nimport pkg from '../package.json';\n\nconst log = debug('cli');\n"]}
