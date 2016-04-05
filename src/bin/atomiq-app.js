@@ -4,10 +4,10 @@
 import 'babel-polyfill';
 import 'source-map-support/register';
 
+import App from '../lib/commands/App';
 import chalk from 'chalk';
 import cli from 'commander';
 import debug from 'debug';
-import Generator from '../lib/tasks/Generator';
 import path from 'path';
 
 let map = new Map([
@@ -38,7 +38,7 @@ function create(options) {
   };
 
   try {
-    Generator.generate(source, dest, context);
+    App.create(source, dest, context);
     console.log('[%s] Try running the app (use `up` to run in a container). Enter:\n%s\n%s\n%s or %s',
       chalk.bold('OK'),
       chalk.bold('   cd ' + context.name),
@@ -47,5 +47,6 @@ function create(options) {
       chalk.bold('atomiq up'));
   } catch (err) {
     console.log('[%s] %s', chalk.red('error'), err.message);
+    process.exit(1);
   }
 }

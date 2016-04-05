@@ -1,10 +1,13 @@
+/* eslint-disable no-console */
+
 // init babel and stack trace support
 import 'babel-polyfill';
 import 'source-map-support/register';
 
+import chalk from 'chalk';
 import cli from 'commander';
 import debug from 'debug';
-import Make from '../lib/tasks/Make';
+import Make from '../lib/commands/Make';
 
 let map = new Map([
   [ 'clean', { description: 'Removes project build artifacts (dist directory)', action: clean }],
@@ -29,8 +32,13 @@ function runtask(task, ...args) {
   const log = debug(`atomiq:make:${task}`);
   log(`running task ${task}`);
   const make = new Make();
-  make.init();
-  make[task](...args);
+  try {
+    make.init();
+    make[task](...args);
+  } catch (err) {
+    console.log('[%s] %s', chalk.red('error'), err.message);
+    process.exit(1);
+  }
 }
 
 /**

@@ -1,9 +1,10 @@
 import fs from 'fs';
 import nunjucks from 'nunjucks';
 import path from 'path';
-import Shell from '../ShellHelper';
+import Shell from './ShellHelper';
 
-export default class Generator {
+export default class TemplateHelper {
+
   static generate(source, dest, context) {
     let appDir = context.name;
 
@@ -14,7 +15,7 @@ export default class Generator {
       throw new Error(message);
     }
 
-    Generator.render(source, dest, context);
+    TemplateHelper.render(source, dest, context);
   }
 
   static render(source, dest, context) {
@@ -32,8 +33,10 @@ export default class Generator {
         let result = nunjucks.renderString(template, context);
         fs.writeFileSync(destpath, result, 'utf8');
       } else if (stats.isDirectory()) {
-        Generator.render(path.join(source, f), path.join(dest, f), context);
+        TemplateHelper.render(path.join(source, f), path.join(dest, f), context);
       }
     });
   }
+
+
 }

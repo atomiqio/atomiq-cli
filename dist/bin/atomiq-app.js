@@ -9,6 +9,10 @@ require('babel-polyfill');
 
 require('source-map-support/register');
 
+var _App = require('../lib/commands/App');
+
+var _App2 = _interopRequireDefault(_App);
+
 var _chalk = require('chalk');
 
 var _chalk2 = _interopRequireDefault(_chalk);
@@ -20,10 +24,6 @@ var _commander2 = _interopRequireDefault(_commander);
 var _debug = require('debug');
 
 var _debug2 = _interopRequireDefault(_debug);
-
-var _Generator = require('../lib/tasks/Generator');
-
-var _Generator2 = _interopRequireDefault(_Generator);
 
 var _path = require('path');
 
@@ -77,10 +77,11 @@ function create(options) {
   };
 
   try {
-    _Generator2.default.generate(source, dest, context);
+    _App2.default.create(source, dest, context);
     console.log('[%s] Try running the app (use `up` to run in a container). Enter:\n%s\n%s\n%s or %s', _chalk2.default.bold('OK'), _chalk2.default.bold('   cd ' + context.name), _chalk2.default.bold('   npm install'), _chalk2.default.bold('   atomiq run'), _chalk2.default.bold('atomiq up'));
   } catch (err) {
     console.log('[%s] %s', _chalk2.default.red('error'), err.message);
+    process.exit(1);
   }
 }
 //# sourceMappingURL=atomiq-app.js.map

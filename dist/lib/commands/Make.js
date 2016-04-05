@@ -10,6 +10,10 @@ var _BabelHelper = require('../BabelHelper');
 
 var _BabelHelper2 = _interopRequireDefault(_BabelHelper);
 
+var _ComposeHelper = require('../ComposeHelper');
+
+var _ComposeHelper2 = _interopRequireDefault(_ComposeHelper);
+
 var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);

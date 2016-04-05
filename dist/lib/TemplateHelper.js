@@ -18,7 +18,7 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
-var _ShellHelper = require('../ShellHelper');
+var _ShellHelper = require('./ShellHelper');
 
 var _ShellHelper2 = _interopRequireDefault(_ShellHelper);
 
@@ -26,12 +26,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Generator = function () {
-  function Generator() {
-    _classCallCheck(this, Generator);
+var TemplateHelper = function () {
+  function TemplateHelper() {
+    _classCallCheck(this, TemplateHelper);
   }
 
-  _createClass(Generator, null, [{
+  _createClass(TemplateHelper, null, [{
     key: 'generate',
     value: function generate(source, dest, context) {
       var appDir = context.name;
@@ -43,7 +43,7 @@ var Generator = function () {
         throw new Error(message);
       }
 
-      Generator.render(source, dest, context);
+      TemplateHelper.render(source, dest, context);
     }
   }, {
     key: 'render',
@@ -62,14 +62,14 @@ var Generator = function () {
           var result = _nunjucks2.default.renderString(template, context);
           _fs2.default.writeFileSync(destpath, result, 'utf8');
         } else if (stats.isDirectory()) {
-          Generator.render(_path2.default.join(source, f), _path2.default.join(dest, f), context);
+          TemplateHelper.render(_path2.default.join(source, f), _path2.default.join(dest, f), context);
         }
       });
     }
   }]);
 
-  return Generator;
+  return TemplateHelper;
 }();
 
-exports.default = Generator;
-//# sourceMappingURL=Generator.js.map
+exports.default = TemplateHelper;
+//# sourceMappingURL=TemplateHelper.js.map

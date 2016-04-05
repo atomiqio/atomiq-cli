@@ -1,4 +1,5 @@
 import Babel from '../BabelHelper';
+import Compose from '../ComposeHelper';
 import path from 'path';
 import Project from '../Project';
 import Shell from '../ShellHelper';
