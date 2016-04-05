@@ -24,6 +24,10 @@ var _commander = require('commander');
 
 var _commander2 = _interopRequireDefault(_commander);
 
+var _prompt = require('prompt');
+
+var _prompt2 = _interopRequireDefault(_prompt);
+
 var _debug = require('debug');
 
 var _debug2 = _interopRequireDefault(_debug);
@@ -85,13 +89,24 @@ function create(options) {
     name: 'app'
   };
 
-  try {
-    _App2.default.create(source, dest, context);
-    console.log('[%s] Try running the app (use `up` to run in a container). Enter:\n%s\n%s\n%s or %s', _chalk2.default.bold('OK'), _chalk2.default.bold('   cd ' + context.name), _chalk2.default.bold('   npm install'), _chalk2.default.bold('   atomiq run'), _chalk2.default.bold('atomiq up'));
-  } catch (err) {
-    console.log('[%s] %s', _chalk2.default.red('error'), err.message);
-    process.exit(1);
-  }
+  _prompt2.default.message = _chalk2.default.blue('atomiq');
+  _prompt2.default.delimiter = _chalk2.default.cyan(':');
+
+  _prompt2.default.start();
+  _prompt2.default.get(['appname'], function (err, result) {
+    if (err) {
+      console.log('[%s] %s', _chalk2.default.red('error'), err.message);
+      process.exit(1);
+    }
+    context.name = result.appname;
+    try {
+      _App2.default.create(source, dest, context);
+      console.log('[%s] Try running the app (use `up` to run in a container). Enter:\n%s\n%s\n%s or %s', _chalk2.default.bold('OK'), _chalk2.default.bold('   cd ' + context.name), _chalk2.default.bold('   npm install'), _chalk2.default.bold('   atomiq run'), _chalk2.default.bold('atomiq up'));
+    } catch (err) {
+      console.log('[%s] %s', _chalk2.default.red('error'), err.message);
+      process.exit(1);
+    }
+  });
 }
 
 function runContainer(options) {
