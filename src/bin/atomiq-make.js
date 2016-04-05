@@ -25,12 +25,12 @@ for (let [key, value] of map) {
 
 cli.parse(process.argv);
 
-function runtask(task, ...rest) {
-  const log = debug(`make:${task}`);
+function runtask(task, ...args) {
+  const log = debug(`atomiq:make:${task}`);
   log(`running task ${task}`);
   const make = new Make();
   make.init();
-  make[task](...rest);
+  make[task](...args);
 }
 
 /**
