@@ -65,7 +65,7 @@ function create(options) {
     console.log('[%s] Try running the app (use `up` to run in a container). Enter:\n%s\n%s\n%s or %s',
       chalk.green.bold('OK'),
       chalk.bold('   cd ' + context.name),
-      chalk.bold('   atomiq build'),
+      chalk.bold('   atomiq make build'),
       chalk.bold('   atomiq up'));
     } catch (err) {
       console.log('[%s] %s', chalk.red('error'), err.message);
