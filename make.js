@@ -121,7 +121,7 @@ target.test = function() {
     debugReminder();
     spawn('mocha', [testDir], spawnopts);
   } else {
-    spawn('docker-compose', ['-f', 'test.yml', 'up', '--force-recreate'], spawnopts);
+    spawn('docker-compose', ['-f', 'docker-compose.test.yml', 'up', '--force-recreate'], spawnopts);
   }
 };
 
@@ -143,7 +143,7 @@ target.debug = function() {
     debugReminder();
     spawn('node-debug', ['--no-preload', '--web-host', '0.0.0.0', app], spawnopts);
   } else {
-    spawn('docker-compose', ['-f', 'debug.yml', 'up', '--force-recreate'], spawnopts);
+    spawn('docker-compose', ['-f', 'docker-compose.debug.yml', 'up', '--force-recreate'], spawnopts);
   }
 };
 

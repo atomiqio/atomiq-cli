@@ -28,6 +28,26 @@ var App = function () {
     value: function create(source, dest, context) {
       _TemplateHelper2.default.generate(source, dest, context);
     }
+  }, {
+    key: 'up',
+    value: function up(options) {
+      _ComposeHelper2.default.up(options);
+    }
+  }, {
+    key: 'test',
+    value: function test(options) {
+      _ComposeHelper2.default.up(options);
+    }
+  }, {
+    key: 'debug',
+    value: function debug(options) {
+      _ComposeHelper2.default.up(options);
+    }
+  }, {
+    key: 'production',
+    value: function production(options) {
+      _ComposeHelper2.default.up(options);
+    }
   }]);
 
   return App;

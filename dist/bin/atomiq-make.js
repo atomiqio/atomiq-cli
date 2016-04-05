@@ -27,7 +27,7 @@ var _Make2 = _interopRequireDefault(_Make);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var map = new Map([['clean', { description: 'Removes project build artifacts (dist directory)', action: clean }], ['dist', { description: 'Ensures all files are copied to dist', action: dist }], ['babel', { description: 'Transpiles src to dist directory', action: babel }], ['image', { description: 'Build the Docker image for the project', action: image }], ['build', { description: 'Run all tasks required for building the project', action: build }], ['rebuild', { description: 'Run all tasks required for completely rebuilding the project', action: rebuild }]]);
+var map = new Map([['clean', { description: 'Removes project build artifacts (dist directory)', action: clean }], ['dist', { description: 'Ensures all files are copied to dist', action: dist }], ['babel', { description: 'Transpiles src to dist directory', action: babel }], ['build', { description: 'Build the Docker image for the project', action: build }], ['rebuild', { description: 'Force rebuild fresh Docker image for the project', action: rebuild }]]);
 
 var _iteratorNormalCompletion = true;
 var _didIteratorError = false;
@@ -105,24 +105,16 @@ function babel(options) {
 /**
  * Build the Docker image for the project.
  */
-function image(options) {
-  babel();
-  runtask('image');
-}
-
-/**
- * Ensures all build tasks are performed for building the project.
- */
 function build(options) {
-  image();
+  babel();
   runtask('build');
 }
 
 /**
- * Ensures all build tasks are performed for completely rebuilding the project.
+ * Rebuild the Docker image for the project.
  */
 function rebuild(options) {
-  image();
+  babel();
   runtask('rebuild');
 }
 //# sourceMappingURL=atomiq-make.js.map

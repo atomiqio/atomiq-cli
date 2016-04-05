@@ -4,11 +4,6 @@ import path from 'path';
 import Project from '../Project';
 import Shell from '../ShellHelper';
 
-// include node_modules/.bin in path, just like 'npm run' scripts
-process.env.PATH = path.join(path.resolve(path.join(__dirname, '../../../node_modules', '.bin')) +
-  path.delimiter +
-  process.env.PATH);
-
 const spawnopts = {
   env: process.env,
   stdio: 'inherit'
@@ -33,18 +28,13 @@ export default class Make {
 
   babel() {
     Babel.transform('src', 'dist');
-    /*
-    if (!options.local) {
-      spawnSync('docker-compose', ['build'], spawnopts);
-    }
-    */
-  }
-
-  image() {
-
   }
 
   build() {
+    Compose.build(spawnopts);
+  }
 
+  rebuild() {
+    Compose.rebuild(spawnopts);
   }
 }

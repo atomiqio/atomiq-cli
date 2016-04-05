@@ -7,4 +7,19 @@ export default class App {
     Template.generate(source, dest, context);
   }
 
+  static up(options) {
+    Compose.up(options);
+  }
+
+  static test(options) {
+    Compose.up(options);
+  }
+
+  static debug(options) {
+    Compose.up(options);
+  }
+
+  static production(options) {
+    Compose.up(options);
+  }
 }
