@@ -9,6 +9,7 @@ import pkg from '../../package.json';
 
 cli
   .version(pkg.version)
-  .command('make <task>', 'project make tasks')
+  .command('app <task>', 'app commands')
+  .command('make <task>', 'build tasks')
   .parse(process.argv)
   ;

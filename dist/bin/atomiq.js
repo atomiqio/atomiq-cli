@@ -18,5 +18,5 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // init babel and stack trace support
 
 
-_commander2.default.version(_package2.default.version).command('make <task>', 'project make tasks').parse(process.argv);
+_commander2.default.version(_package2.default.version).command('app <task>', 'app commands').command('make <task>', 'build tasks').parse(process.argv);
 //# sourceMappingURL=atomiq.js.map

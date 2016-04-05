@@ -18,7 +18,7 @@ const spawnopts = {
   stdio: 'inherit'
 };
 
-const app = path.join('dist', 'app.js');
+const app = path.join('dist', 'bin', 'atomiq.js');
 const testDir = path.join('dist', 'test');
 
 // should be run from project root
