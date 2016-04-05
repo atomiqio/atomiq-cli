@@ -13,7 +13,6 @@ import prompt from 'prompt';
 import debug from 'debug';
 import path from 'path';
 import pkg from '../../package.json';
-import { babel } from './atomiq-make';
 
 cli
   .version(pkg.version)
@@ -81,6 +80,7 @@ function create(options) {
     console.log('[%s] Try running the app (use `up` to run in a container). Enter:\n%s\n%s\n%s or %s',
       chalk.green.bold('OK'),
       chalk.bold('   cd ' + context.name),
+      chalk.bold('   atomiq build'),
       chalk.bold('   atomiq up'),
       chalk.bold('atomiq up'));
   } catch (err) {
@@ -94,7 +94,6 @@ function runContainer(options) {
   const log = debug('atomiq:new');
   log('Run app in a container');
   try {
-    babel();
     App.up(options);
   } catch (err) {
     console.log('[%s] %s', chalk.red('error'), err.message);
@@ -106,7 +105,6 @@ function testContainer(options) {
   const log = debug('atomiq:app:test');
   log('Run tests in a container');
   try {
-    babel();
     App.test(options);
   } catch (err) {
     console.log('[%s] %s', chalk.red('error'), err.message);
@@ -118,7 +116,6 @@ function debugContainer(options) {
   const log = debug('atomiq:app:debug');
   log('Debug app running in a container');
   try {
-    babel();
     App.debug(options);
   } catch (err) {
     console.log('[%s] %s', chalk.red('error'), err.message);
