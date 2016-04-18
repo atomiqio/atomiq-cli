@@ -29,7 +29,7 @@
     "nunjucks": "^2.4.1",
     "optimist": "^0.6.1",
     "prompt": "^1.0.0",
-    "ramda": "^0.20.1",
+    "ramda": "^0.21.0",
     "rimraf": "^2.5.2",
     "semver": "^5.1.0",
     "shelljs": "^0.6.0",
