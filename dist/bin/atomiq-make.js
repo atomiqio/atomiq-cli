@@ -33,9 +33,27 @@ var _Make2 = _interopRequireDefault(_Make);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var map = new Map([['clean', { description: 'Removes project build artifacts (dist directory)', action: clean }], ['dist', { description: 'Ensures all files are copied to dist', action: dist }], ['babel', { description: 'Transpiles src to dist directory', action: babel }], ['build', { description: 'Build the Docker image for the project', action: build }], ['rebuild', { description: 'Force rebuild fresh Docker image for the project', action: rebuild }],
+var map = new Map([['clean', {
+  description: 'Removes project build artifacts (dist directory)',
+  action: clean
+}], ['dist', {
+  description: 'Ensures all files are copied to dist',
+  action: dist
+}], ['babel', {
+  description: 'Transpiles src to dist directory',
+  action: babel
+}], ['build', {
+  description: 'Build the Docker image for the project',
+  action: build
+}], ['rebuild', {
+  description: 'Force rebuild fresh Docker image for the project',
+  action: rebuild
+}],
 //  [ 'watch-src', { description: 'Watch src directory and update dist', action: watchsrc }],
-['watch-dist', { description: 'Watch dist directory and restart server', action: watchdist }]]);
+['watch-dist', {
+  description: 'Watch dist directory and restart server',
+  action: watchdist
+}]]);
 
 var _iteratorNormalCompletion = true;
 var _didIteratorError = false;

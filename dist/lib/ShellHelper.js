@@ -52,7 +52,9 @@ var ShellHelper = function () {
   }, {
     key: 'copyDir',
     value: function copyDir(source, dest) {
-      var options = arguments.length <= 2 || arguments[2] === undefined ? { recurse: true } : arguments[2];
+      var options = arguments.length <= 2 || arguments[2] === undefined ? {
+        recurse: true
+      } : arguments[2];
       var filter = arguments[3];
 
       _shelljs2.default.mkdir('-p', dest);

@@ -31,7 +31,10 @@ var _path2 = _interopRequireDefault(_path);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var map = new Map([['create', { description: 'Create a new atomiq app', action: create }]]);
+var map = new Map([['create', {
+  description: 'Create a new atomiq app',
+  action: create
+}]]);
 
 var _iteratorNormalCompletion = true;
 var _didIteratorError = false;

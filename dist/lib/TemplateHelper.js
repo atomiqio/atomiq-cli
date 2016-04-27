@@ -58,7 +58,7 @@ var TemplateHelper = function () {
           f = f.replace(/^_(.*)$/, '.$1');
           var destpath = _path2.default.join(dest, f);
           var template = _fs2.default.readFileSync(srcpath, 'utf8');
-          //let result = nunjucks.render(path.basename(srcpath), context);
+          //let result = nunjucks.render(path.basename(srcpath), context)
           var result = _nunjucks2.default.renderString(template, context);
           _fs2.default.writeFileSync(destpath, result, 'utf8');
         } else if (stats.isDirectory()) {

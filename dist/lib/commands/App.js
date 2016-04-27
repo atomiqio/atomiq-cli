@@ -6,9 +6,17 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _print = require('../io/print');
+
+var print = _interopRequireWildcard(_print);
+
 var _ComposeHelper = require('../ComposeHelper');
 
 var _ComposeHelper2 = _interopRequireDefault(_ComposeHelper);
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
 
 var _ShellHelper = require('../ShellHelper');
 
@@ -19,6 +27,8 @@ var _TemplateHelper = require('../TemplateHelper');
 var _TemplateHelper2 = _interopRequireDefault(_TemplateHelper);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -35,6 +45,9 @@ var App = function () {
   _createClass(App, null, [{
     key: 'create',
     value: function create(source, dest, context) {
+      if (_ShellHelper2.default.exists(_path2.default.join(dest, context.name))) {
+        throw new Error('Destination already exists (will not overwrite)');
+      }
       _TemplateHelper2.default.generate(source, dest, context);
     }
   }, {
@@ -85,9 +98,9 @@ var App = function () {
 
       try {
         url = host + ':' + port;
-        console.log(url);
+        print.ln(url);
       } catch (err) {
-        console.log(err);
+        print.error(err);
         throw new Error('Make sure that a container is running first.');
       }
     }
