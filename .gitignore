@@ -1,3 +1,5 @@
+coverage/
 dist/
+test-api/
 node_modules/
 npm-debug.log

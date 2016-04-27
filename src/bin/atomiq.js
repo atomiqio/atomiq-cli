@@ -15,6 +15,8 @@ import debug from 'debug'
 import path from 'path'
 import pkg from '../../package.json'
 
+export default cli
+
 cli
   .version(pkg.version)
   .command('make <task>', 'build tasks')
@@ -49,8 +51,9 @@ for (let [key, value] of map) {
     .description(value.description)
     .action(trywrap(value.action))
 }
-
-cli.parse(process.argv)
+if (require.main === module) {
+  cli.parse(process.argv)
+}
 
 function trywrap(fn) {
   return async () => {
