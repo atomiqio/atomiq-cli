@@ -1,10 +1,13 @@
+import * as print from './io/print'
 import es2015 from 'babel-preset-es2015'
 import fs from 'fs'
 import path from 'path'
+import R from 'ramda'
 import Shell from './ShellHelper'
 import syntaxAsyncFunctions from 'babel-plugin-syntax-async-functions'
 import { transformFileSync } from 'babel-core'
 import transformRegenerator from 'babel-plugin-transform-regenerator'
+import { watchTree } from 'watch'
 
 const defaultOptions = {
   sourceMaps: true,
@@ -27,10 +30,32 @@ export default class BabelHelper {
         let result = transformFileSync(srcpath, options || defaultOptions)
         fs.writeFileSync(destpath, result.code, 'utf8')
         fs.writeFileSync(sourcemap, JSON.stringify(result.map), 'utf8')
+        print.ln(`${srcpath} -> ${destpath}`)
       } else if (stats.isDirectory()) {
         BabelHelper.transform(path.join(source, f), path.join(dest, f), options)
       }
 
+    })
+  }
+
+  static watch(source, dest, options) {
+    options = R.merge(defaultOptions, options)
+    let watchOptions = {
+      interval: options.interval,
+      filter: f => {
+        let filter = f => path.extname(f) == '.js'
+        let stats = fs.statSync(f)
+        if (stats.isFile() && filter(f) || stats.isDirectory()) {
+          return true
+        }
+      }
+    }
+
+    // remove watch-specific option (babel fails on unrecognized options)
+    delete options.interval
+
+    watchTree(source, watchOptions, () => {
+      BabelHelper.transform(source, dest, options)
     })
   }
 }
