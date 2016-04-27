@@ -5,7 +5,6 @@ module.exports = {
     "node": true,
     "mocha": true
   },
-  "plugins": ["eslint-plugin-babel"],
   "extends": "eslint:recommended",
   "parserOptions": {
     "sourceType": "module"
@@ -23,17 +22,6 @@ module.exports = {
         "before": true
       }
     ],
-    "babel/generator-star-spacing": 1,
-    "babel/new-cap": 1,
-    "babel/array-bracket-spacing": 1,
-    "babel/object-curly-spacing": ["error", "always", {
-      "objectsInObjects": false,
-      "arraysInObjects": false
-    }],
-    "babel/object-shorthand": 1,
-    "babel/arrow-parens": 0,
-    "babel/no-await-in-loop": 1,
-    "babel/flow-object-type": 1,
     "block-scoped-var": 2,
     "block-spacing": [
       2,
@@ -48,7 +36,6 @@ module.exports = {
     ],
     "callback-return": 2,
     "camelcase": 0,
-    "comma-dangle": 0,
     "comma-spacing": [
       2,
       {
@@ -83,7 +70,7 @@ module.exports = {
     "eqeqeq": 0,
     "func-names": 0,
     "func-style": 0,
-    "generator-star-spacing": 0,
+    "generator-star-spacing": 2,
     "global-require": 0,
     "guard-for-in": 2,
     "handle-callback-err": 0,
@@ -110,7 +97,14 @@ module.exports = {
     "max-len": 0,
     "max-nested-callbacks": 2,
     "max-params": 0,
-    "new-cap": 0,
+    "new-cap": [
+      2,
+      {
+        "capIsNewExceptions": [
+          "Router"
+        ]
+      }
+    ],
     "new-parens": 2,
     "newline-after-var": 0,
     "newline-per-chained-call": 0,
@@ -118,7 +112,7 @@ module.exports = {
     "no-array-constructor": 2,
     "no-bitwise": 2,
     "no-caller": 2,
-    "no-catch-shadow": 0,
+    "no-catch-shadow": 2,
     "no-confusing-arrow": 0,
     "no-continue": 2,
     "no-div-regex": 2,
@@ -217,11 +211,12 @@ module.exports = {
     "radix": 2,
     "require-jsdoc": 0,
     "require-yield": 2,
-    "semi": 0,
+    "semi": [
+      2,
+      "always"
+    ],
     "semi-spacing": 2,
-    "sort-imports": [2, {
-      "ignoreCase": true
-    }],
+    "sort-imports": [2, { "ignoreCase": true }],
     "sort-vars": 2,
     "space-before-blocks": 2,
     "space-before-function-paren": 0,

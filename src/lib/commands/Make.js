@@ -1,57 +1,58 @@
-import Babel from '../BabelHelper';
-import Compose from '../ComposeHelper';
-import path from 'path';
-import Project from '../Project';
-import Shell from '../ShellHelper';
+import * as print from '../io/print'
+import Babel from '../BabelHelper'
+import Compose from '../ComposeHelper'
+import path from 'path'
+import Project from '../Project'
+import Shell from '../ShellHelper'
 
 // include node_modules/.bin in path, just like 'npm run' scripts
 process.env.PATH = path.join(path.join(__dirname, '..', '..', '..', './node_modules', '.bin') +
   path.delimiter +
-  process.env.PATH);
+  process.env.PATH)
 
 const spawnopts = {
   env: process.env,
   stdio: 'inherit'
-};
+}
 
 export default class Make {
 
   init() {
-    this.project = new Project();
-    this.project.checkValidProject();
+    this.project = new Project()
+    this.project.checkValidProject()
   }
 
   clean() {
-    Shell.rm('-rf', './dist');
+    Shell.rm('-rf', './dist')
   }
 
   dist() {
     Shell.copyDir('src', 'dist', {
       recurse: true
-    }, f => path.extname(f) != '.js');
+    }, f => path.extname(f) != '.js')
   }
 
   babel() {
-    Babel.transform('src', 'dist');
+    Babel.transform('src', 'dist')
   }
 
   build() {
-    Compose.build(spawnopts);
+    Compose.build(spawnopts)
   }
 
   rebuild() {
-    Compose.rebuild(spawnopts);
+    Compose.rebuild(spawnopts)
   }
 
   watchsrc() {
-    console.log('spawning babel');
-    Shell.spawn('babel', ['--watch', 'src', '-d', 'dist', '--source-maps'], spawnopts);
+    print.ln('spawning babel')
+    Shell.spawn('babel', ['--watch', 'src', '-d', 'dist', '--source-maps'], spawnopts)
   }
 
   watchdist() {
-    console.log('While monitoring, you can also enter "rs" in the console to manually restart');
+    print.ln('While monitoring, you can also enter "rs" in the console to manually restart')
     Shell.spawn('nodemon',
       ['--legacy-watch', '--watch', 'dist', '-e', 'js,json', '--exec', 'docker-compose up --force-recreate'],
-      spawnopts);
+      spawnopts)
   }
 }

@@ -1,44 +1,62 @@
 /* eslint-disable no-console */
 
 // init babel and stack trace support
-import 'babel-polyfill';
-import 'source-map-support/register';
+import 'babel-polyfill'
+import 'source-map-support/register'
 
-import chalk from 'chalk';
-import cli from 'commander';
-import debug from 'debug';
-import Make from '../lib/commands/Make';
+import chalk from 'chalk'
+import cli from 'commander'
+import debug from 'debug'
+import Make from '../lib/commands/Make'
 
 let map = new Map([
-  [ 'clean', { description: 'Removes project build artifacts (dist directory)', action: clean }],
-  [ 'dist', { description: 'Ensures all files are copied to dist', action: dist }],
-  [ 'babel', { description: 'Transpiles src to dist directory', action: babel }],
-  [ 'build', { description: 'Build the Docker image for the project', action: build }],
-  [ 'rebuild', { description: 'Force rebuild fresh Docker image for the project', action: rebuild }],
-//  [ 'watch-src', { description: 'Watch src directory and update dist', action: watchsrc }],
-  [ 'watch-dist', { description: 'Watch dist directory and restart server', action: watchdist }],
-]);
+  ['clean', {
+    description: 'Removes project build artifacts (dist directory)',
+    action: clean
+  }],
+  ['dist', {
+    description: 'Ensures all files are copied to dist',
+    action: dist
+  }],
+  ['babel', {
+    description: 'Transpiles src to dist directory',
+    action: babel
+  }],
+  ['build', {
+    description: 'Build the Docker image for the project',
+    action: build
+  }],
+  ['rebuild', {
+    description: 'Force rebuild fresh Docker image for the project',
+    action: rebuild
+  }],
+  //  [ 'watch-src', { description: 'Watch src directory and update dist', action: watchsrc }],
+  ['watch-dist', {
+    description: 'Watch dist directory and restart server',
+    action: watchdist
+  }],
+])
 
 for (let [key, value] of map) {
   cli
     .command(key)
     .description(value.description)
     .action(value.action)
-    ;
+
 }
 
-cli.parse(process.argv);
+cli.parse(process.argv)
 
 function runtask(task, ...args) {
-  const log = debug(`atomiq:make:${task}`);
-  log(`running task ${task}`);
-  const make = new Make();
+  const log = debug(`atomiq:make:${task}`)
+  log(`running task ${task}`)
+  const make = new Make()
   try {
-    make.init();
-    make[task](...args);
+    make.init()
+    make[task](...args)
   } catch (err) {
-    console.log('[%s] %s', chalk.red('error'), err.message);
-    process.exit(1);
+    console.log('[%s] %s', chalk.red('error'), err.message)
+    process.exit(1)
   }
 }
 
@@ -46,7 +64,7 @@ function runtask(task, ...args) {
  * Removes the dist directory.
  */
 function clean(options) {
-  runtask('clean');
+  runtask('clean')
 }
 
 /**
@@ -54,8 +72,8 @@ function clean(options) {
  * (not just the transpiled sources).
  */
 function dist(options) {
-  clean();
-  runtask('dist');
+  clean()
+  runtask('dist')
 }
 
 /**
@@ -63,37 +81,37 @@ function dist(options) {
  * ES5 files and sourcemaps in the dist directory.
  */
 export function babel(options) {
-  dist();
-  runtask('babel');
+  dist()
+  runtask('babel')
 }
 
 /**
  * Build the Docker image for the project.
  */
 function build(options) {
-  babel();
-  runtask('build');
+  babel()
+  runtask('build')
 }
 
 /**
  * Rebuild the Docker image for the project.
  */
 function rebuild(options) {
-  babel();
-  runtask('rebuild');
+  babel()
+  runtask('rebuild')
 }
 
 /**
  * Watch the src directory and update dist.
  */
 function watchsrc(options) {
-  dist();
-  runtask('watchsrc');
+  dist()
+  runtask('watchsrc')
 }
 
 /**
  * Watch the dist directory and restart server.
  */
 function watchdist(options) {
-  runtask('watchdist');
+  runtask('watchdist')
 }
