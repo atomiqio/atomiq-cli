@@ -1,3 +1,4 @@
+/*eslint no-invalid-this: "off" */
 import { exec } from 'child_process'
 
 const usage = `
@@ -21,10 +22,10 @@ const usage = `
 
 `
 
-describe('help', function () {
-  it('should display the usage information', function (done) {
+describe('help', function() {
+  it('should display the usage information', function(done) {
     this.timeout(30 * 1000)
-    exec('./dist/bin/atomiq.js', function (error, stdout, stderr) {
+    exec('./dist/bin/atomiq.js', function(error, stdout, stderr) {
       if (error) {
         done(error)
       } else if (stderr) {
@@ -34,6 +35,6 @@ describe('help', function () {
       } else {
         done()
       }
-    });
-  });
-});
+    })
+  })
+})

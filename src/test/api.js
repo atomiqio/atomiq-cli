@@ -1,17 +1,18 @@
-import { spawn } from 'child_process'
+/*eslint no-invalid-this: "off" */
 import { exists } from 'fs'
 import { join } from 'path'
 import rimraf from 'rimraf'
+import { spawn } from 'child_process'
 
-describe('new api', function () {
+describe('new api', function() {
   let atomiq = join(process.cwd(), '/dist/bin/atomiq.js')
   let apiName = 'test-api'
   let apiDir = join(process.cwd(), apiName)
-  after(function (done) {
+  after(function(done) {
     this.timeout(0)
     rimraf(apiDir, done)
   })
-  it('should run atomiq new', function (done) {
+  it('should run atomiq new', function(done) {
     this.timeout(12 * 1000)
     let newApi = spawn(atomiq, ['new'], {
       stdio: ['pipe', 1, 2]
@@ -36,7 +37,7 @@ describe('new api', function () {
       done()
     })
   })
-  it('should be created', function (done) {
+  it('should be created', function(done) {
     exists(apiDir, (found) => {
       if (!found) {
         return done(new Error('api folder not found'))
@@ -44,7 +45,7 @@ describe('new api', function () {
       done()
     })
   })
-  it('should install', function (done) {
+  it('should install', function(done) {
     this.timeout(100 * 1000)
     let npm = spawn('npm', ['install'], {
       cwd: apiDir
@@ -57,7 +58,7 @@ describe('new api', function () {
       done()
     })
   })
-  it('should babel', function (done) {
+  it('should babel', function(done) {
     this.timeout(50 * 1000)
     let babel = spawn(atomiq, ['make', 'babel'], {
       cwd: apiDir
@@ -70,7 +71,7 @@ describe('new api', function () {
       done()
     })
   })
-  it('should test', function (done) {
+  it('should test', function(done) {
     this.timeout(50 * 1000)
     let test = spawn('npm', ['test'], {
       cwd: apiDir
