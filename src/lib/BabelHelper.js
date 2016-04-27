@@ -41,6 +41,7 @@ export default class BabelHelper {
   static watch(source, dest, options) {
     options = R.merge(defaultOptions, options)
     let watchOptions = {
+      interval: options.interval,
       filter: f => {
         let filter = f => path.extname(f) == '.js'
         let stats = fs.statSync(f)
@@ -49,6 +50,9 @@ export default class BabelHelper {
         }
       }
     }
+
+    // remove watch-specific option (babel fails on unrecognized options)
+    delete options.interval
 
     watchTree(source, watchOptions, () => {
       BabelHelper.transform(source, dest, options)

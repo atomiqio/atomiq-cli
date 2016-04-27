@@ -46,7 +46,8 @@ export default class Make {
 
   watchsrc() {
     Babel.watch('src', 'dist', {
-      sourceMaps: true
+      sourceMaps: true,
+      interval: 1000
     })
   }
 
