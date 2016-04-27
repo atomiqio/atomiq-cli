@@ -30,7 +30,10 @@ let map = new Map([
     description: 'Force rebuild fresh Docker image for the project',
     action: rebuild
   }],
-  //  [ 'watch-src', { description: 'Watch src directory and update dist', action: watchsrc }],
+  ['watch-src', {
+    description: 'Watch src directory and update dist',
+    action: watchsrc
+  }],
   ['watch-dist', {
     description: 'Watch dist directory and restart server',
     action: watchdist

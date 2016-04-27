@@ -45,8 +45,9 @@ export default class Make {
   }
 
   watchsrc() {
-    print.ln('spawning babel')
-    Shell.spawn('babel', ['--watch', 'src', '-d', 'dist', '--source-maps'], spawnopts)
+    Babel.watch('src', 'dist', {
+      sourceMaps: true
+    })
   }
 
   watchdist() {

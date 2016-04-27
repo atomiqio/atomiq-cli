@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "test": "mocha ./dist/test",
-	"postinstall" : "node make babel"
+    "postinstall": "node make babel"
   },
   "bin": {
     "atomiq": "./dist/bin/atomiq.js"
@@ -36,7 +36,8 @@
     "rimraf": "*",
     "semver": "*",
     "shelljs": "*",
-    "source-map-support": "*"
+    "source-map-support": "*",
+    "watch": "^0.17.1"
   },
   "devDependencies": {
     "esformatter": "*",
