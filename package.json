@@ -4,7 +4,8 @@
   "description": "Atomiq CLI",
   "license": "MIT",
   "scripts": {
-    "test": "mocha ./dist/test"
+    "test": "mocha ./dist/test",
+	"postinstall" : "node make babel"
   },
   "bin": {
     "atomiq": "./dist/bin/atomiq.js"
