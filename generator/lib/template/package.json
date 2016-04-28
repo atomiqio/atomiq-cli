@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "node library package",
   "scripts": {
-    "test": "mocha ./dist/test"
+    "test": "mocha ./dist/test",
+    "lint": "eslint src",
+    "format": "esformatter -i 'src/**/*.js'"
   },
   "main": "lib",
   "dependencies": {
@@ -19,6 +21,9 @@
     "source-map-support": "^0.4.0"
   },
   "devDependencies": {
+    "esformatter": "*",
+    "eslint": "*",
+    "eslint-plugin-babel": "^3.2.0",
     "mocha": "^2.4.5",
     "node-inspector": "^0.12.7"
   }
