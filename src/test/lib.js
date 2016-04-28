@@ -4,33 +4,39 @@ import { join } from 'path'
 import rimraf from 'rimraf'
 import { spawn } from 'child_process'
 
-describe('new api', function() {
+describe('new lib', function() {
   let atomiq = join(process.cwd(), '/dist/bin/atomiq.js')
-  let apiName = 'test-api'
-  let apiDir = join(process.cwd(), apiName)
+  let libName = 'test-lib'
+  let libDir = join(process.cwd(), libName)
   after(function(done) {
     this.timeout(0)
-    rimraf(apiDir, done)
+    rimraf(libDir, done)
   })
   it('should run atomiq new', function(done) {
     this.timeout(12 * 1000)
-    let newApi = spawn(atomiq, ['new'], {
+    let newLib = spawn(atomiq, ['new'], {
       stdio: ['pipe', 1, 2]
     })
-    newApi.on('error', done)
+    newLib.on('error', done)
     setTimeout(() => {
-      newApi.stdin.write('\n')
+      newLib.stdin.write('\u001B\u005B\u0042')
     }, 0.5 * 1000)
     setTimeout(() => {
-      newApi.stdin.write(apiName)
+      newLib.stdin.write('\u001B\u005B\u0042')
     }, 1 * 1000)
     setTimeout(() => {
-      newApi.stdin.write('\n')
+      newLib.stdin.write('\n')
     }, 1.5 * 1000)
     setTimeout(() => {
-      newApi.kill('SIGINT')
+      newLib.stdin.write(libName)
+    }, 2 * 1000)
+    setTimeout(() => {
+      newLib.stdin.write('\n')
+    }, 2.5 * 1000)
+    setTimeout(() => {
+      newLib.kill('SIGINT')
     }, 10 * 1000)
-    newApi.on('close', (code) => {
+    newLib.on('close', (code) => {
       if (code && code !== 130) {
         return done(new Error('non zero exit: ' + code))
       }
@@ -38,9 +44,9 @@ describe('new api', function() {
     })
   })
   it('should be created', function(done) {
-    exists(apiDir, (found) => {
+    exists(libDir, (found) => {
       if (!found) {
-        return done(new Error('api folder not found'))
+        return done(new Error('lib folder not found'))
       }
       done()
     })
@@ -48,7 +54,7 @@ describe('new api', function() {
   it('should babel', function(done) {
     this.timeout(50 * 1000)
     let babel = spawn(atomiq, ['make', 'babel'], {
-      cwd: apiDir
+      cwd: libDir
     })
     babel.on('error', done)
     babel.on('close', (code) => {
@@ -61,7 +67,7 @@ describe('new api', function() {
   it('should test', function(done) {
     this.timeout(50 * 1000)
     let test = spawn('npm', ['test'], {
-      cwd: apiDir
+      cwd: libDir
     })
     test.on('error', done)
     test.on('close', (code) => {
