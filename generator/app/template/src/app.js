@@ -5,7 +5,11 @@ import debug from 'debug';
 const log = debug('app');
 
 if (require.main === module) {
-  // close server gracefully...
+  // optional
+  handleExitSignals();
+}
+
+function handleExitSignals() {
   // handle ctrl-c
   exitOnSignal('SIGINT');
   // handle docker stop
