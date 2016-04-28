@@ -46,9 +46,12 @@ describe('new api', function() {
     })
   })
   it('should install', function(done) {
-    this.timeout(100 * 1000)
-    let npm = spawn('npm', ['install'], {
-      cwd: apiDir
+    this.timeout(500 * 1000)
+    let env = process.env
+    env.npm_config_progress = false
+    let npm = spawn('npm', ['install', '-s'], {
+      cwd: apiDir,
+      env
     })
     npm.on('error', done)
     npm.on('close', (code) => {
