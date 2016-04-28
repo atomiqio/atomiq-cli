@@ -12,7 +12,8 @@ import { watchTree } from 'watch'
 const defaultOptions = {
   sourceMaps: true,
   presets: [es2015],
-  plugins: [syntaxAsyncFunctions, transformRegenerator]
+  plugins: [syntaxAsyncFunctions, transformRegenerator],
+  babelrc: false
 }
 
 export default class BabelHelper {

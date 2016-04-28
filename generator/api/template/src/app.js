@@ -2,7 +2,7 @@ import bodyParser from 'body-parser';
 import debug from 'debug';
 import { DirectoryRouteLoader } from 'atomiq';
 import express from 'express';
-import morgan from 'morgan';
+import expressBunyanLogger from 'express-bunyan-logger';
 import path from 'path';
 import pkg from '../package.json';
 
@@ -22,7 +22,7 @@ app.set('service', {
 });
 
 // install middleware
-app.use(morgan(process.env.NODE_ENV == 'production' ? 'combined' : 'dev'));
+app.use(expressBunyanLogger());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
