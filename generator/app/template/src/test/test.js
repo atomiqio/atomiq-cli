@@ -1,8 +1,8 @@
 import 'babel-polyfill';
 import 'source-map-support/register';
 
-import GitHubUser from '../lib/GitHubUser';
 import assert from 'assert';
+import GitHubUser from '../lib/GitHubUser';
 
 // WARNING: don't use arrow functions with mocha describe(), it(),
 // and all the other standard mocha functions that take callbacks
