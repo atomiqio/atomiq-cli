@@ -12,32 +12,16 @@ import GitHubUser from '../lib/GitHubUser';
 // needing access to the mocha `this` context in the callbacks, it's
 // best to use full `function()` syntax for the mocha functions.
 
-// async mocha helper inspired by Jason Jarrett:
-// http://staxmanade.com/2015/11/testing-asyncronous-code-with-mochajs-and-es7-async-await/
-let mocha = (asyncFunc, timeout = 2 * 1000) => {
-  // Returns a function that takes a `done` parameter as mocha expects.
-  // It doesn't use arrow syntax so the `this` context will be set correctly
-  return async function(done) {
-    this.timeout = timeout; // eslint-disable-line
-    try {
-      await asyncFunc();
-      done();
-    } catch (err) {
-      done(err);
-    }
-  };
-};
-
 describe('tests', function() {
 
   // This is an auto-generated sample test to demo testing async functions
-  it('should fetch GitHub user details for "subfuzion"', mocha(async () => {
+  it('should fetch GitHub user details for "subfuzion"', async function () {
     let login = 'subfuzion';
     let user = await GitHubUser.fetchDetails(login);
     assert(user);
     assert.equal(user.login, login);
     assert.equal(user.name, 'Tony Pujals');
     assert.equal(user.blog, 'https://twitter.com/subfuzion');
-  }));
+  });
 
 });
