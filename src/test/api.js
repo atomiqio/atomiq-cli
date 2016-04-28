@@ -45,22 +45,6 @@ describe('new api', function() {
       done()
     })
   })
-  it('should install', function(done) {
-    this.timeout(500 * 1000)
-    let env = process.env
-    env.npm_config_progress = false
-    let npm = spawn('npm', ['install', '-s'], {
-      cwd: apiDir,
-      env
-    })
-    npm.on('error', done)
-    npm.on('close', (code) => {
-      if (code) {
-        return done(new Error('npm exited with error code: ' + code));
-      }
-      done()
-    })
-  })
   it('should babel', function(done) {
     this.timeout(50 * 1000)
     let babel = spawn(atomiq, ['make', 'babel'], {
