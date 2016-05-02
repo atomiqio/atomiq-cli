@@ -15,6 +15,7 @@ const spawnopts = {
   stdio: 'inherit'
 }
 
+// TODO this isn't really a make file so much as a bunch of tasks to support make
 export default class Make {
 
   init() {

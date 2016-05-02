@@ -84,10 +84,16 @@ async function create(options) {
 
   App.create(source, dest, context)
 
+  if (context.type === 'lib') {
+    print.ok('To build your package, enter:\n%s\n%s\n%s',
+      chalk.bold('   cd ' + context.name),
+      chalk.bold('   atomiq make babel'))
+  } else {
   print.ok('To run the app in a Docker container, enter:\n%s\n%s\n%s',
     chalk.bold('   cd ' + context.name),
     chalk.bold('   atomiq make build'),
     chalk.bold('   atomiq up'))
+  }
 }
 
 function runContainer(options) {
