@@ -85,7 +85,7 @@ async function create(options) {
   App.create(source, dest, context)
 
   if (context.type === 'lib') {
-    print.ok('To build your package, enter:\n%s\n%s\n%s',
+    print.ok('To build your package, enter:\n%s\n%s',
       chalk.bold('   cd ' + context.name),
       chalk.bold('   atomiq make babel'))
   } else {
