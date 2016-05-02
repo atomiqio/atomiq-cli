@@ -9,44 +9,51 @@ The {{name}} microservice has been generated with a few basic sample routes and 
   * [Babel](https://babeljs.io) support
   * [ESLint](http://eslint.org/) / [esformatter](https://github.com/millermedeiros/esformatter) support
 
-  ## Details
+## Details
 
-  ### make.js script
+The [Atomiq CLI](https://github.com/atomiqio/atomiq-cli) provides the following commands for building, running, and testing this project with Docker.
 
-  This project has a `make.js` script that supports building, running, and testing both locally
-  and in a Docker container.
+  #### atomiq make
 
-   * `node make clean` - remove the `dist` directory
+  The `atomiq make` group of commands make changes to the file system. Run `atomiq make --help` or `atomiq make [cmd] --help` for help at the command line.
+
+   * `atomiq make clean` - remove project build artifacts (`dist` directory)
+   * `atomiq make dist` - ensure all files are copied from `src` to `dist`
    * `node make babel` - transpile `src` to `dist` with sourcemaps (ES6 and async/await support)
-   * `node make build` - transpile, then build a Docker image
-   * `node make run` - start in container or start locally (--local)
-   * `node make test` - run mocha tests in container or locally (--local)
-   * `node make debug` - run with debugging support in container or locally (--local)
-   * `node make watch` - when anything in src changes, re-transpile to dist
-   * `node make monitor` - when anything in dist changes, restart server in container or locally (--local)
-   * `node make host` - get Docker machine IP:PORT for the app running in a container
+   * `node make build` - build the Docker image for the project
+   * `node make rebuild` - force build fresh Docker image for the project
+   * `node make watch-src` - watch `src` directory and update `dist`
+   * `node make watch-dist` - watch `dist` directory and restart server
+
+  #### atomiq
+
+   * `atomiq new` - create a new atomiq project (`api`, `app`, or `lib`)
+   * `atomiq up` - run `api` or `app` project in a container
+   * `atomiq test` - run project tests in a container
+   * `atomiq debug` - debug `api` or `app` project in a container
+   * `atomiq url` - get URL (IP:PORT) for running `api` or `app`
 
   ### Developing
 
   terminal #1
 
-      $ node make build
+      $ atomiq make build
 
       # watch for changes in src and update dist
-      $ node make watch
+      $ node make watch-src
 
   terminal #2
 
       # watch for changes in dist and restart server
-      $ node make monitor [--local]
+      $ node make watch-dist
 
   terminal #3
 
-      host=$(node make host)
+      url=$(atomiq url)
 
-      $ curl $host/item/ping
+      $ curl $url/item/ping
 
-      $ curl -X POST -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}' $host/item/1
+      $ curl -X POST -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}' $url/item/1
 
       $ # easier POST with curl default (application/x-www-form-urlencoded):
       $ curl -X POST -d "param1=value1&param2=value2" $url/item/1
@@ -56,11 +63,11 @@ The {{name}} microservice has been generated with a few basic sample routes and 
 
   ### Testing
 
-      $ node make test [--local]
+      $ atomiq test
 
   ### Debugging
 
-      $ node make debug [--local]
+      $ atomiq debug
 
   Open node inspector in browser
 
@@ -96,3 +103,4 @@ The {{name}} microservice has been generated with a few basic sample routes and 
       this.router['m-search'](req, res) {
         ...
       }
+
