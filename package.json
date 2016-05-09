@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "test": "babel-node ./node_modules/.bin/isparta cover --report html ./node_modules/mocha/bin/_mocha -- --recursive src/test",
-    "postinstall": "node make babel",
+    "prepublish": "node make babel",
     "lint": "eslint src",
     "format": "esformatter -i 'src/**/*.js'"
   },
