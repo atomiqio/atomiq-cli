@@ -1,6 +1,6 @@
 {
   "name": "atomiq-cli",
-  "version": "1.0.0-alpha.13",
+  "version": "1.0.0-alpha.14",
   "description": "Atomiq CLI",
   "license": "MIT",
   "scripts": {
@@ -10,7 +10,7 @@
     "format": "esformatter -i 'src/**/*.js'"
   },
   "bin": {
-     "atomiq": "dist/bin/atomiq.js"
+    "atomiq": "dist/bin/atomiq.js"
   },
   "repository": "atomiqio/atomiq-cli",
   "dependencies": {
