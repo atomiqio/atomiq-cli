@@ -9,7 +9,7 @@
     "lint": "eslint src",
     "format": "esformatter -i 'src/**/*.js'"
   },
-  "bin": "./dist/bin/atomiq",
+  "bin": "./dist/bin/atomiq.js",
   "repository": "atomiqio/atomiq-cli",
   "dependencies": {
     "babel": "*",
