@@ -55,7 +55,7 @@ export default class Make {
   watchdist() {
     print.ln('While monitoring, you can also enter "rs" in the console to manually restart')
     Shell.spawn('nodemon',
-      ['--legacy-watch', '--watch', 'dist', '-e', 'js,json', '--exec', 'docker-compose up --force-recreate'],
+      ['--legacy-watch', '--delay', '1', '--watch', 'dist', '-e', 'js,json', '--exec', 'docker-compose up --force-recreate'],
       spawnopts)
   }
 }
