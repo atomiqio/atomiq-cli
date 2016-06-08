@@ -29,7 +29,8 @@ export default class BabelHelper {
         let destpath = path.join(dest, f)
         let sourcemap = `${destpath}.map`
         let result = transformFileSync(srcpath, options || defaultOptions)
-        fs.writeFileSync(destpath, result.code, 'utf8')
+        let sourceMappingURL = '\n//# sourceMappingURL=' + path.basename(sourcemap);
+        fs.writeFileSync(destpath, result.code + sourceMappingURL, 'utf8')
         fs.writeFileSync(sourcemap, JSON.stringify(result.map), 'utf8')
         print.ln(`${srcpath} -> ${destpath}`)
       } else if (stats.isDirectory()) {
