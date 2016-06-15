@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "app1 microservice",
   "scripts": {
+    "prepublish": "npm run babel",
     "build": "babel src -d dist --source-maps",
     "start": "node dist",
     "debug": "babel-node-debug --no-preload --web-host 0.0.0.0 ./src/app.js",
