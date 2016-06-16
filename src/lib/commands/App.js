@@ -8,6 +8,7 @@ const spawnopts = {
   env: process.env,
   stdio: 'inherit'
 }
+spawnopts.env.PATH += path.delimiter + path.join(__dirname, '..', '..', '..', 'node_modules', '.bin')
 
 export default class App {
 
@@ -65,5 +66,17 @@ export default class App {
       print.error(err)
       throw new Error('Make sure that a container is running first.')
     }
+  }
+
+  static cover(options) {
+    Shell.exec('npm run cover', spawnopts)
+  }
+
+  static lint(options) {
+    Shell.exec('npm run lint', spawnopts)
+  }
+
+  static format(options) {
+    Shell.exec('npm run format', spawnopts)
   }
 }

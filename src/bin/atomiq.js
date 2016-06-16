@@ -43,6 +43,18 @@ let map = new Map([
     description: 'Get URL (IP:PORT) for running app',
     action: url
   }],
+  ['cover', {
+    description: 'Generate a code coverage report',
+    action: cover
+  }],
+  ['lint', {
+    description: 'Run eslint to check for common issues',
+    action: lint
+  }],
+  ['format', {
+    description: 'Reformat source code according to esformatter rules',
+    action: format
+  }],
 ])
 
 for (let [key, value] of map) {
@@ -120,4 +132,22 @@ function url(options) {
   const log = debug('atomiq:app:url')
   log('Getting URL for running app')
   App.url(options)
+}
+
+function cover(options) {
+  const log = debug('atomiq:app:cover')
+  log('Generate code coverage report')
+  App.cover(options)
+}
+
+function lint(options) {
+  const log = debug('atomiq:app:lint')
+  log('Run eslint to check for common issues')
+  App.lint(options)
+}
+
+function format(options) {
+  const log = debug('atomiq:app:format')
+  log('Reformat source code using esformatter')
+  App.format(options)
 }
