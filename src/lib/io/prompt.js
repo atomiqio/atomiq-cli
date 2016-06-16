@@ -13,8 +13,8 @@ export async function newProject(context) {
     name: 'name',
     type: 'input',
     message: 'name',
-    // use project type from previous questions as default project name
-    default: answers => answers.type
+    // if no name option, use project type from previous questions as default project name
+    default: context.name ? context.name : answers => answers.type
   }
 
   let choices = await prompt([
