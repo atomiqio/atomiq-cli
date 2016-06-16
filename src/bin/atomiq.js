@@ -23,7 +23,7 @@ cli
 
 
 let map = new Map([
-  ['new', {
+  ['new [name]', {
     description: 'Create a new atomiq app',
     action: create
   }],
@@ -68,9 +68,9 @@ if (require.main === module) {
 }
 
 function trywrap(fn) {
-  return async () => {
+  return async (...options) => {
     try {
-      await fn()
+      await fn(...options)
     } catch (err) {
       print.error(err)
       process.exit(1)
@@ -81,13 +81,14 @@ function trywrap(fn) {
 /**
  * Create a new app.
  */
-async function create(options) {
+async function create(...options) {
   const log = debug('atomiq:app:new')
   log('Creating a new app')
 
   let dest = process.cwd()
   let context = {
-    type: 'api'
+    name: options[0],
+    type: 'api',
   }
 
   context = await prompt.newProject(context)
@@ -103,10 +104,10 @@ async function create(options) {
       //chalk.bold('   atomiq test'))
       chalk.bold('   npm install\n   npm test'))
   } else {
-  print.ok('To run the app in a Docker container, enter:\n%s\n%s\n%s',
-    chalk.bold('   cd ' + context.name),
-    chalk.bold('   atomiq make build'),
-    chalk.bold('   atomiq up'))
+    print.ok('To run the app in a Docker container, enter:\n%s\n%s\n%s',
+      chalk.bold('   cd ' + context.name),
+      chalk.bold('   atomiq make build'),
+      chalk.bold('   atomiq up'))
   }
 }
 
