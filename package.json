@@ -15,14 +15,20 @@
   "repository": "atomiqio/atomiq-cli",
   "dependencies": {
     "babel-cli": "^6.9.0",
+    "babel-eslint": "^6.0.5",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-plugin-transform-class-properties": "^6.10.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.10.3",
     "chalk": "*",
     "commander": "*",
     "debug": "*",
     "esformatter": "^0.9.3",
     "eslint": "^2.10.2",
+    "eslint-plugin-babel": "^3.2.0",
     "inquirer": "^1.0.3",
     "isparta": "^4.0.0",
     "istanbul": "^0.4.3",
+    "mocha": "^2.5.3",
     "node-fetch": "^1.5.3",
     "nodemon": "^1.9.2",
     "nunjucks": "*",
@@ -31,18 +37,15 @@
     "ramda": "*",
     "rimraf": "*",
     "semver": "*",
-    "shelljs": "*",
-    "watch": "^0.19.1"
+    "shelljs": "*"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.4",
-    "babel-plugin-transform-async-to-generator": "^6.8.0",
-    "babel-plugin-transform-class-properties": "^6.9.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.7.7",
     "babel-register": "^6.9.0",
     "eslint-plugin-babel": "^3.2.0",
     "mocha": "^2.4.5",
-    "source-map-support": "^0.4.0"
+    "source-map-support": "^0.4.0",
+    "watch": "^0.19.1"
   },
   "atomiq": {
     "supportedVersion": "1.0.6"
