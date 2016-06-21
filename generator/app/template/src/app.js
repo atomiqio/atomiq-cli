@@ -7,6 +7,8 @@ const log = debug('app')
 if (require.main === module) {
   // optional
   handleExitSignals()
+
+  console.log('hello, world')
 }
 
 function handleExitSignals() {
