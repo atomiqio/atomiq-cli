@@ -32,7 +32,7 @@
     "rimraf": "*",
     "semver": "*",
     "shelljs": "*",
-    "watch": "^0.18.0"
+    "watch": "^0.19.1"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.4",
