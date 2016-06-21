@@ -1,4 +1,3 @@
-.babelrc
 .dockerignore
 .editorconfig
 .esformatter
@@ -7,6 +6,7 @@
 .gitignore
 .npmignore
 configuration.md
+coverage/
 Dockerfile
 docker-compose.yml
 docker-compose.common.yml
@@ -15,4 +15,3 @@ docker-compose.production.yml
 docker-compose.test.yml
 node_modules/
 npm-debug.log
-src/

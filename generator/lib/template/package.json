@@ -1,13 +1,13 @@
 {
-  "name": "lib1",
+  "name": "{{name}}",
   "version": "0.0.1",
-  "description": "node library package",
+  "description": "{{name}} lib",
   "scripts": {
     "prepublish": "atomiq make babel",
     "build": "babel src -d dist --source-maps",
     "babel": "babel-node src/app.js",
     "test": "mocha --compilers js:babel-register src/test",
-    "cover": "npm run build && node node_modules/.bin/isparta cover --root dist/test --report html node_modules/.bin/_mocha -- --recursive dist/test/**/*.js",
+    "cover": "npm run build && isparta cover --root dist/test --report html mocha -- --recursive dist/test/**/*.js",
     "lint": "eslint src",
     "format": "esformatter -i 'src/**/*.js'"
   },

@@ -109,43 +109,43 @@ async function create(...options) {
   }
 }
 
-function runContainer(options) {
+function runContainer(...options) {
   const log = debug('atomiq:new')
   log('Run app in a container')
   App.up(options)
 }
 
-function testContainer(options) {
+function testContainer(...options) {
   const log = debug('atomiq:app:test')
   log('Run tests in a container')
   App.test(options)
 }
 
-function debugContainer(options) {
+function debugContainer(...options) {
   const log = debug('atomiq:app:debug')
   log('Debug app running in a container')
   App.debug(options)
 }
 
-function url(options) {
+function url(...options) {
   const log = debug('atomiq:app:url')
   log('Getting URL for running app')
   App.url(options)
 }
 
-function cover(options) {
+function cover(...options) {
   const log = debug('atomiq:app:cover')
   log('Generate code coverage report')
   App.cover(options)
 }
 
-function lint(options) {
+function lint(...options) {
   const log = debug('atomiq:app:lint')
   log('Run eslint to check for common issues')
   App.lint(options)
 }
 
-function format(options) {
+function format(...options) {
   const log = debug('atomiq:app:format')
   log('Reformat source code using esformatter')
   App.format(options)

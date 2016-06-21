@@ -1,9 +1,9 @@
 version: '2'
 services:
-  web:
+  app:
     extends:
       file: docker-compose.yml
-      service: web
+      service: app
     ports:
       - "8080:8080"
-    command: "node_modules/.bin/node-debug --no-preload --web-host 0.0.0.0 ./dist/app.js"
+    command: "npm run debug"

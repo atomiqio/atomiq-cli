@@ -1,7 +1,7 @@
 version: '2'
 services:
-  web:
+  app:
     extends:
       file: docker-compose.yml
-      service: web
+      service: app
     command: "node_modules/.bin/mocha ./dist/test"
