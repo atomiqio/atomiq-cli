@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-
 /* eslint-disable no-console */
 
-// init babel and stack trace support
-import 'babel-polyfill'
+// init babel stack trace support
 import 'source-map-support/register'
 
 import * as print from '../lib/io/print'
