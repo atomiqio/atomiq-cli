@@ -1,9 +1,11 @@
 version: '2'
 services:
-  app:
-    extends:
-      file: docker-compose.yml
-      service: app
+  lib:
+    build: .
+    image: {{name}}
+    environment:
+      DEBUG: lib*
+      NODE_ENV: development
     volumes:
       - ./src:/usr/src/app/src
       - ./coverage:/usr/src/app/coverage
