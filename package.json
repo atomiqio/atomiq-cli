@@ -19,6 +19,7 @@
     "babel-plugin-transform-async-to-generator": "^6.8.0",
     "babel-plugin-transform-class-properties": "^6.10.2",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.10.3",
+    "babel-register": "^6.9.0",
     "chalk": "*",
     "commander": "*",
     "debug": "*",
@@ -37,13 +38,7 @@
     "ramda": "*",
     "rimraf": "*",
     "semver": "*",
-    "shelljs": "*"
-  },
-  "devDependencies": {
-    "babel-eslint": "^6.0.4",
-    "babel-register": "^6.9.0",
-    "eslint-plugin-babel": "^3.2.0",
-    "mocha": "^2.4.5",
+    "shelljs": "*",
     "source-map-support": "^0.4.0",
     "watch": "^0.19.1"
   },
