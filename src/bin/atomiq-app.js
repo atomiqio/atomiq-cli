@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
 
 // init babel and stack trace support
-import 'babel-polyfill'
-import 'source-map-support/register'
+//import 'source-map-support/register'
 
 import App from '../lib/commands/App'
 import chalk from 'chalk'
