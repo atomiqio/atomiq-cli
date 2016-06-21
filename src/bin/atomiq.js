@@ -98,9 +98,7 @@ async function create(...options) {
   if (context.type === 'lib') {
     print.ok('To build your package, enter:\n%s\n%s',
       chalk.bold('   cd ' + context.name),
-      // will restore the following when `atomiq test` can test a lib (via `npm test`)
-      //chalk.bold('   atomiq test'))
-      chalk.bold('   npm install\n   npm test'))
+      chalk.bold('   atomiq test'))
   } else {
     print.ok('To run the app in a Docker container, enter:\n%s\n%s\n%s',
       chalk.bold('   cd ' + context.name),
