@@ -1,18 +1,17 @@
 import * as print from './io/print'
-import es2015 from 'babel-preset-es2015'
 import fs from 'fs'
 import path from 'path'
 import R from 'ramda'
 import Shell from './ShellHelper'
-import syntaxAsyncFunctions from 'babel-plugin-syntax-async-functions'
+import transformAsyncToGenerator from 'babel-plugin-transform-async-to-generator'
+import transformClassProperties from 'babel-plugin-transform-class-properties'
 import { transformFileSync } from 'babel-core'
-import transformRegenerator from 'babel-plugin-transform-regenerator'
+import transformModules from 'babel-plugin-transform-es2015-modules-commonjs'
 import { watchTree } from 'watch'
 
 const defaultOptions = {
   sourceMaps: true,
-  presets: [es2015],
-  plugins: [syntaxAsyncFunctions, transformRegenerator],
+  plugins: [transformAsyncToGenerator, transformModules, transformClassProperties],
   babelrc: false
 }
 
