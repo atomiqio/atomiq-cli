@@ -1,9 +1,9 @@
 version: '2'
 services:
-  web:
+  api:
     extends:
       file: docker-compose.common.yml
-      service: web
+      service: api
     environment:
       DEBUG: app*
       NODE_ENV: development
