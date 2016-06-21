@@ -1,36 +1,22 @@
 # Atomiq CLI
 
-This is an alpha release.
+> Node.js microservice development tailored for Docker environments.
 
-> Generate Node microservices with support for Docker, ES6 and async/await,
-  Node Inspector, and optional, straight-forward directory-based routing conventions.
+### Features
+
+* Generate app, API, and library packages with ES6 and Async functions support.
+* Start services and run tests with commands leveraging standard `docker-compose` files.
+* Debug containers with Node Inspector.
+* API support includes optional directory-based routing conventions to simplify microservice development.
+* Signal handling for graceful server shutdown in Docker containers.
+* Includes `lint`, `format`, and `cover` commands based on [ESLint], [esformatter], and [isparta].
 
 [![npm badge][npm-image]][npm-url]
 [![npm downloads][downloads-image]][downloads-url]
 
-[atomiq] provides very lightweight structure and support useful for
-Express-based microservices. It is not a framework and doesn't get in
-the way of Express, but it does offer a nice convention for
-directory-based routing using ES6 classes that you can leverage if you choose to.
+## Install
 
-This generator will scaffold an app that correctly handles signals
-for graceful server shutdown, including inside of a Docker container.
-It provides a useful set of docker-compose files for running containers
-for production and development (mounts the local `dist` directory
-during development).
-
-It generates a few sample routes using ES6 classes and provides a simple
-Node.js make script that supports building, running, and testing
-locally and in a Docker container.
-
-This is a complete rewrite of the original CLI and also a replacement for the yeoman generator ([generator-atomiq]).
-
-Features:
-
-  * Docker support for production and development, including debugging support with [Node Inspector]
-  * Signal handling for graceful server shutdown (including inside of Docker containers)
-  * [Babel] support
-  * [ESLint] / [esformatter] support
+    npm install -g atomiq-cli
 
 ## Usage
 
@@ -44,9 +30,26 @@ To see more command details, run
 
 	$ atomiq <command> --help [or -h]
 
-The CLI is fairly silent. To enable debug output, set the DEBUG environment variable:
+The CLI is generally silent. To enable debug output, set the DEBUG environment variable for the type of project.
 
     $ DEBUG=atomiq* atomiq <subcommand> [options]
+
+## Generating Projects
+
+With the `atomiq new` command, you can generate `api`, `app`, and `lib` package projects.
+
+### API Generator
+
+The API generator uses [atomiq]  to provide lightweight structure and support useful for
+Express-based microservices. Atomiq is not a framework and doesn't get in
+the way of Express, but it does offer a nice convention for
+directory-based routing using ES6 classes that you can leverage if you choose to.
+
+It generates a few sample routes using ES6 classes and provides a simple
+Node.js make script that supports building, running, and testing
+locally and in a Docker container.
+
+This is a complete rewrite of the original CLI and also a replacement for the yeoman generator ([generator-atomiq]).
 
 ## Atomiq CLI development for contributors
 
@@ -102,6 +105,7 @@ The CLI is fairly silent. To enable debug output, set the DEBUG environment vari
 [ESLint]: http://eslint.org/
 [esformatter]: https://github.com/millermedeiros/esformatter
 [generator-atomiq]: https://github.com/atomiqio/generator-atomiq
+[isparta]: https://github.com/douglasduteil/isparta
 [Node Inspector]: https://github.com/node-inspector/node-inspector
 [npm]: https://www.npmjs.com/
 [npm-image]: https://img.shields.io/npm/v/atomiq-cli.svg
