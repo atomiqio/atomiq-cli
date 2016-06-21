@@ -1,4 +1,4 @@
-import { Route } from 'atomiq';
+import { Route } from 'atomiq'
 
 // /item/:id/about
 export default class About extends Route {
@@ -8,7 +8,7 @@ export default class About extends Route {
     res.json({
       id: req.params.id,
       about: 'whatevs'
-    });
+    })
   }
 
 }

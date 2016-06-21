@@ -88,7 +88,7 @@ The [Atomiq CLI](https://github.com/atomiqio/atomiq-cli) provides the following 
 
       default export class MyRoute extends Route {
         constructor(app) {
-          super(app);
+          super(app)
 
           // you have access to the app and the express router for this route
           this.app ...

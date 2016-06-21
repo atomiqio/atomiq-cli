@@ -1,4 +1,4 @@
-import { Route } from 'atomiq';
+import { Route } from 'atomiq'
 
 // /item/:id
 export default class ItemByID extends Route {
@@ -9,15 +9,15 @@ export default class ItemByID extends Route {
       item: {
         id: req.params.id
       }
-    });
+    })
   }
 
   // POST /item/:id
   post(req, res) {
-    this.log(req.body);
+    this.log(req.body)
     res.json({
       status: 'success',
       received: req.body
-    });
+    })
   }
 }

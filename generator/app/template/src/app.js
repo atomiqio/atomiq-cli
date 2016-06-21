@@ -1,24 +1,24 @@
-import 'babel-polyfill';
-import 'source-map-support/register';
+import 'babel-polyfill'
+import 'source-map-support/register'
 
-import debug from 'debug';
-const log = debug('app');
+import debug from 'debug'
+const log = debug('app')
 
 if (require.main === module) {
   // optional
-  handleExitSignals();
+  handleExitSignals()
 }
 
 function handleExitSignals() {
   // handle ctrl-c
-  exitOnSignal('SIGINT');
+  exitOnSignal('SIGINT')
   // handle docker stop
-  exitOnSignal('SIGTERM');
+  exitOnSignal('SIGTERM')
 
   function exitOnSignal(signal) {
     process.on(signal, () => {
-      log(`$(signal) received, exiting now...`);
-      process.exit();
-    });
+      log(`$(signal) received, exiting now...`)
+      process.exit()
+    })
   }
 }

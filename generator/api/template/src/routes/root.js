@@ -1,4 +1,4 @@
-import { Route } from 'atomiq';
+import { Route } from 'atomiq'
 
 // (root url) /
 export default class Root extends Route {
@@ -7,7 +7,7 @@ export default class Root extends Route {
   get(req, res) {
     res.json({
       root: []
-    });
+    })
   }
 
 }

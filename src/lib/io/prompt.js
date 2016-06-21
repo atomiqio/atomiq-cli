@@ -25,5 +25,5 @@ export async function newProject(context) {
   context.type = choices.type
   context.name = choices.name
 
-  return context;
+  return context
 }

@@ -88,7 +88,7 @@ The {{name}} microservice has been generated with a few basic sample routes and 
 
       default export class MyRoute extends Route {
         constructor(app) {
-          super(app);
+          super(app)
 
           // you have access to the app and the express router for this route
           this.app ...

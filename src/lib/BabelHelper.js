@@ -28,7 +28,7 @@ export default class BabelHelper {
         let destpath = path.join(dest, f)
         let sourcemap = `${destpath}.map`
         let result = transformFileSync(srcpath, options || defaultOptions)
-        let sourceMappingURL = '\n//# sourceMappingURL=' + path.basename(sourcemap);
+        let sourceMappingURL = '\n//# sourceMappingURL=' + path.basename(sourcemap)
         fs.writeFileSync(destpath, result.code + sourceMappingURL, 'utf8')
         fs.writeFileSync(sourcemap, JSON.stringify(result.map), 'utf8')
         print.ln(`${srcpath} -> ${destpath}`)

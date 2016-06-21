@@ -58,7 +58,7 @@ describe('new api', function() {
     babel.on('error', done)
     babel.on('close', code => {
       if (code) {
-        return done(new Error('babel exited with error code: ' + code));
+        return done(new Error('babel exited with error code: ' + code))
       }
       done()
     })
@@ -72,7 +72,7 @@ describe('new api', function() {
     test.on('error', done)
     test.on('close', code => {
       if (code) {
-        return done(new Error('test exited with error code: ' + code));
+        return done(new Error('test exited with error code: ' + code))
       }
       done()
     })
