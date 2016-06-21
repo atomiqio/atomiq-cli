@@ -1,4 +1,4 @@
-FROM atomiq/node:onbuild
+FROM atomiq/node:latest-onbuild
 
 # node-inspector
 EXPOSE 8080
