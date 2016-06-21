@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 
 // init babel stack trace support
-import 'source-map-support/register'
+//import 'source-map-support/register'
 
 import * as print from '../lib/io/print'
 import * as prompt from '../lib/io/prompt'
