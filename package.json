@@ -43,6 +43,6 @@
     "watch": "^0.19.1"
   },
   "atomiq": {
-    "supportedVersion": "1.0.6"
+    "supportedVersion": "1.0.7"
   }
 }
