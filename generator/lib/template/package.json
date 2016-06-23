@@ -4,7 +4,7 @@
   "description": "{{name}} lib",
   "scripts": {
     "prepublish": "atomiq make babel",
-    "build": "babel src -d dist --source-maps",
+    "build": "cp -r src dist && babel src -d dist --source-maps",
     "babel": "babel-node src/app.js",
     "test": "mocha --compilers js:babel-register src/test",
     "cover": "npm run build && isparta cover --root dist/test --report html mocha -- --recursive dist/test/**/*.js",

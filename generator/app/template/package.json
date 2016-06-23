@@ -4,7 +4,7 @@
   "description": "{{name}} app",
   "scripts": {
     "prepublish": "atomiq make babel",
-    "build": "babel src -d dist --source-maps",
+    "build": "cp -r src dist && babel src -d dist --source-maps",
     "start": "node dist",
     "debug": "babel-node-debug --no-preload --web-host 0.0.0.0 ./src/app.js",
     "babel": "babel-node src/app.js",
