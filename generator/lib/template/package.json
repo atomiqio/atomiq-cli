@@ -11,7 +11,7 @@
     "lint": "eslint src",
     "format": "esformatter -i 'src/**/*.js'"
   },
-  "main": "lib",
+  "main": "dist",
   "dependencies": {
     "atomiq": "^1.0.6",
     "bunyan": "^1.8.1",
