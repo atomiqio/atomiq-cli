@@ -1,6 +1,3 @@
-import 'babel-polyfill'
-import 'source-map-support/register'
-
 import debug from 'debug'
 const log = debug('app')
 
