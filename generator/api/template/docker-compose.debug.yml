@@ -1,7 +1,6 @@
 version: '2'
 services:
   api:
-    network_mode: host
     extends:
       file: docker-compose.yml
       service: api
