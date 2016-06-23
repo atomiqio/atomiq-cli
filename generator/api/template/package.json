@@ -14,7 +14,7 @@
     "format": "esformatter -i 'src/**/*.js'"
   },
   "dependencies": {
-    "atomiq": "^1.0.6",
+    "atomiq": "^1.0.7",
     "body-parser": "^1.15.0",
     "debug": "^2.2.0",
     "express": "^4.13.4",
