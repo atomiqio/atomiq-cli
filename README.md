@@ -14,6 +14,11 @@
 [![npm badge][npm-image]][npm-url]
 [![npm downloads][downloads-image]][downloads-url]
 
+### Caveats
+
+* Primarily for Docker-oriented development
+* Only testing with latest versions of Node.js and Alpine
+
 ## Install
 
     npm install -g atomiq-cli
