@@ -26,7 +26,7 @@ module.exports = {
     "babel/generator-star-spacing": 1,
     "babel/new-cap": 1,
     "babel/array-bracket-spacing": 1,
-    "babel/object-curly-spacing": ["error", "always", {
+    "babel/object-curly-spacing": [0, "always", {
       "objectsInObjects": false,
       "arraysInObjects": false
     }],
