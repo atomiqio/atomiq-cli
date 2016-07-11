@@ -15,7 +15,7 @@ export default class ComposeHelper {
   }
 
   static test(options) {
-    Shell.spawn('docker-compose', ['-f', 'docker-compose.test.yml', 'up', '--force-recreate'], options)
+    Shell.spawn('docker-compose', ['-f', 'docker-compose.test.yml', 'run', 'sut'], options)
   }
 
   static debug(options) {
