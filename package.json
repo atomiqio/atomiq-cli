@@ -1,6 +1,6 @@
 {
   "name": "atomiq-cli",
-  "version": "1.0.0-alpha.41",
+  "version": "1.0.0-alpha.42",
   "description": "Atomiq CLI",
   "license": "MIT",
   "scripts": {
